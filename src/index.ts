@@ -103,4 +103,34 @@
 // console.log(maVoiture.marque);
 
 
-import { Jeanne } from "./hero";
+// import { Jeanne } from "./hero";
+
+class Hero {
+   name: string;
+   life : number;
+   power : number;
+
+  constructor(name: string, life: number, power : number) {
+    this.name = name;
+    this.life = life;
+    this.power = power;
+  }
+
+  attack(opponent: Hero): number {
+    
+    return this.life = this.life-opponent.power;
+    
+  }
+
+  isAlive(): boolean {
+    
+    return this.life > 0;
+    }
+}
+const Hero1 = new Hero("Coco", 100000, 9570);
+const Hero2= new Hero("Jeanne", 150000, 9899);
+console.log(`joueur ${Hero2.name } à  ${Hero2.life} point de vie. Le joueur ${Hero1.name} a ${Hero1.life} point de vie`);
+Hero2.isAlive();
+console.log (`le joueur ${Hero2.name} est à ${Hero1.attack(Hero2)} point de vie`)
+
+

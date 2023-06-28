@@ -36,10 +36,24 @@ La visibilité des propriétés d'une classe définit l'accès et la portée de 
 ## Level 3
 
 - Comment faire pour diviser notre programme en différents fichiers ? (ex: une classe dans un fichier que j'importe dans un autre)
+  le principe de diviser est celui de créer des fichiers de class séparé comportant la même famille.
+  ex : un fichier Hero ou dedans j'aurais toutes mes classes de heros, un autre avec les armes de ces héros.
+
 - Qu'est ce que l'héritage ?
+  l'héritage est la liaison d'un classe dites parents sur une class dites enfant ex:
+  on a une classe animal qui est la class parent et on aura la class chien qui sera la classe enfant.
+
 - Comment appeler le constructeur d'une classe mère ?
+  Pour appeler le constructeur d'une classe on utilise "super" suivi de sa propriété dans la classe parent.
+
 - Comment appeler une méthode d'une classe mère ?
+
+Pour appeler le constructeur d'une classe parent (classe mère) à partir d'une classe enfant (classe dérivée), vous pouvez utiliser le mot-clé super() dans le constructeur de la classe enfant. Cela permet d'exécuter le constructeur de la classe parent avant d'initialiser les propriétés spécifiques à la classe enfant.
+
 - Qu'est ce que le polymorphism ?
+
+Dans le polymorphisme dynamique, des objets de classes dérivées (enfants) peuvent être traités comme des objets de leur classe parent (ou d'une classe de base commune). Cela signifie que vous pouvez utiliser une référence de la classe parent pour accéder et manipuler des objets des classes dérivées, tout en utilisant les méthodes spécifiques à ces classes.
+Ex : dans mon jeu de hero, je peut choisir entre 3 armes differentes (Axe,Sword,Spear). mon fichier hero est la classe parent et mes classes enfants inyterchangeable vont etre mes armes differentes.
 
 **🎉🎉🎉Mettre à jour le tableau Github Project🎉🎉🎉**
 
