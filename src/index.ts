@@ -1,136 +1,164 @@
-// let tableau: any[] = [0,"j", "2"];
-// console.log(tableau);
-
-
-// // DEBUT DU LEVEL 1
-// // 1- En TypeScript, les types primitifs de données incluent les types suivants :
-
-// // Exemple de string
-// let message: string = 'Hello World !';
-// console.log(message);
-
-// // Exemple de number
-// let nombre: number = 15;
-// console.log(nombre);
-
-// // Exemple de bolean
-// let boolean: Boolean = true;
-// console.log(boolean);
-
-// // Exemple de Null
-// let vide: null = null
-// console.log(vide);
-
-// // 2- Comment typer un tableau ?
-
-// // Exemple d'un tableau de nombres
-// let nombres: number[] = [1, 2, 3, 4, 5];
-// console.log(nombres );
-
-// // Exemple d'un tableau de chaînes de caractères
-// let mots: string[] = ["Bonjour", "Monde"];
-// console.log(mots);
-
-// // Exemple d'un tableau mixte de nombres et de chaînes de caractères
-// let mixte: (number | string)[] = [1, "deux", 3, "quatre"];
-// console.log(mixte);
-
-// // 3- le type `any` c'est quoi?
-// //exemple d'utilisation du type any :
-// let variable: any;
-
-// variable = 10; // variable peut contenir un nombre
-// console.log(variable);
-// variable = "Bonjour"; // mais aussi une chaîne de caractères
-// console.log(variable);
-// variable = true; // voir même une valeur booléenne... en gros c'est un fourre tout lol
-// console.log(variable);
-
-// let variable2: any;
-
-// variable2 = {
-//   "prénom" : "Nicolas",
-//   "Age" : 42,
-//   "Ville" : "Pomponne"
-// };
-// console.log(variable2);
-
-// // // 4- Comment typer le retour d'une fonction ainsi que le type de ses paramètres ?
-
-// // // Typage du retour de la fonction :
-// // function addition(a: number, b: number): number {
-// //   return a + b;
-// // }
-// // console.log(addition(5,10));
-// //Typage des paramètres de la fonction :
-// function afficherMessage(nom: string, age: number): void {//la fonction afficherMessage prend deux paramètres : string et number. La fonction ne renvoie rien, d'où l'utilisation du type void.
-//   console.log(`Bonjour, je m'appelle ${nom} et j'ai ${age} ans.`);
-// }
-// afficherMessage("carottes", 52);
-// // FIN DU LEVEL 1
-
-// // DEBUT DU LVL 2
-
-// class Voiture {
-//   marque: string;
-//   annee: number;
-//   carburant: string;
-//   litres: number;
-
-//   constructor(marque: string, annee: number, carburant: string, litres: number) {
-//     this.marque = marque;
-//     this.annee = annee;
-//     this.carburant = carburant;
-//     this.litres= litres;
-//   }
-
-//   demarrer() : void {
-//     console.log(`La voiture ${this.marque}  de ${this.annee} démarre !`);
-//   }
-
-//   arreter() : void{
-//     console.log(`La voiture ${this.marque} s'arrête !`);
-//   }
-
-//   panne() : void {
-//     console.log(`la voiture ${this.marque} commence à caler, remettez ${this.litres} litres de ${this.carburant}`)
-//   }
-// }
-
-// const maVoiture = new Voiture("Audi", 2002, "gazoil", 5);
-// console.log(maVoiture.panne());
-
-// console.log(maVoiture.marque);
-
-
-// import { Jeanne } from "./hero";
-
 class Hero {
-   name: string;
-   life : number;
-   power : number;
+  private _name: string;
+  private _life: number;
+  private _power: number;
+  weapon!: Weapon;
 
-  constructor(name: string, life: number, power : number) {
-    this.name = name;
-    this.life = life;
-    this.power = power;
+  constructor(name: string, life: number, power: number) {
+    this._name = name;
+    this._life = life;
+    this._power = power;
+  }
+
+  getpuissanceHero(): number {
+    return this._power;
+  }
+
+  setpuissanceHero(newPH: number) {
+    this._power = newPH;
+  }
+
+  getnomDuHero(): string {
+    return this._name;
+  }
+
+  setnomDuHero(newName: string) {
+    this._name = newName;
+  }
+
+  getvieDuHero(): number {
+    return this._life;
+  }
+
+  setvieDuHero(newLife: number) {
+    this._life = newLife;
   }
 
   attack(opponent: Hero): number {
-    
-    return this.life = this.life-opponent.power;
-    
+    return (this._life = this._life - opponent._power);
   }
 
   isAlive(): boolean {
-    
-    return this.life > 0;
+    if (this._life > 0) {
+      return true;
+    } else {
+      return false;
     }
+  }
 }
-const Hero1 = new Hero("Coco", 100000, 9570);
-const Hero2= new Hero("Jeanne", 150000, 9899);
-console.log(`joueur ${Hero2.name } à  ${Hero2.life} point de vie. Le joueur ${Hero1.name} a ${Hero1.life} point de vie`);
-Hero2.isAlive();
-console.log (`le joueur ${Hero2.name} est à ${Hero1.attack(Hero2)} point de vie`)
 
+/******************************************************************************************************
+ * Chapitre 2
+ *
+ ******************************************************************************************************/
 
+class Weapon {
+  name: string;
+  damage: number;
+
+  constructor(arme: string, damage: any) {
+    this.name = arme;
+    this.damage = damage;
+  }
+}
+class HeroAxe extends Hero {
+  constructor(name: string, life: number, power: number, axe: Weapon) {
+    super(name, life, power);
+    this.weapon = axe;
+  }
+  attack(opponent: Hero): number {
+    if (opponent instanceof HeroAxe) {
+      if (this.weapon) {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() -
+            this.getpuissanceHero() * 2 -
+            this.weapon.damage
+        );
+      } else {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() - this.getpuissanceHero() * 2
+        );
+      }
+    } else {
+      super.attack(opponent);
+    }
+    return opponent.getvieDuHero();
+  }
+}
+
+class HeroSword extends Hero {
+  constructor(name: string, life: number, power: number, sword: Weapon) {
+    super(name, life, power);
+    this.weapon = sword;
+  }
+  attack(opponent: Hero): number {
+    if (opponent instanceof HeroSword) {
+      if (this.weapon) {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() -
+            this.getpuissanceHero() * 2 -
+            this.weapon.damage
+        );
+      } else {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() - this.getpuissanceHero() * 2
+        );
+      }
+    } else {
+      super.attack(opponent);
+    }
+    return opponent.getvieDuHero();
+  }
+}
+class HeroSpear extends Hero {
+  constructor(name: string, life: number, power: number, spear: Weapon) {
+    super(name, life, power);
+    this.weapon = spear;
+  }
+  attack(opponent: Hero): number {
+    if (opponent instanceof HeroSpear) {
+      if (this.weapon) {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() -
+            this.getpuissanceHero() * 2 -
+            this.weapon.damage
+        );
+      } else {
+        opponent.setvieDuHero(
+          opponent.getvieDuHero() - this.getpuissanceHero() * 2
+        );
+      }
+    } else {
+      super.attack(opponent);
+    }
+    return opponent.getvieDuHero();
+  }
+}
+
+const axe = new Weapon("Axe", 10);
+const Hero1 = new HeroAxe("Claire", 300, 35, axe);
+
+const sword = new Weapon("Sword", 5);
+const Hero2 = new HeroSword("Leon", 200, 22, sword);
+
+const spear = new Weapon("Spear", 8);
+const Hero3 = new HeroSpear("Bill", 250, 25, spear);
+
+function Baston(Combattant1: Hero, Combattant2: Hero): void {
+  let phase = 0;
+  while (Combattant1.isAlive() && Combattant2.isAlive()) {
+    Combattant1.attack(Combattant2);
+    Combattant2.attack(Combattant1);
+    console.log(Combattant1.getvieDuHero(), Combattant2.getvieDuHero());
+    if (!Combattant1.isAlive() && !Combattant2.isAlive()) {
+      console.log(`Vous avez Perdu bande de nazes !`);
+    } else if (!Combattant1.isAlive()) {
+      console.log(`${Combattant2.getnomDuHero()} à remporté la victoire !`);
+    } else if (!Combattant2.isAlive()) {
+      console.log(`${Combattant1.getnomDuHero()} à remporté la victoire !`);
+    }
+    phase++;
+    console.log(`round : ${phase}`);
+  }
+}
+Baston(Hero1, Hero3);
