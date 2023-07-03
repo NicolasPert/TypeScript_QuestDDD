@@ -75,9 +75,7 @@ class HeroAxe extends Hero {
             this.weapon.damage
         );
       } else {
-        opponent.setvieDuHero(
-          opponent.getvieDuHero() - this.getpuissanceHero() * 2
-        );
+
       }
     } else {
       super.attack(opponent);
@@ -100,9 +98,7 @@ class HeroSword extends Hero {
             this.weapon.damage
         );
       } else {
-        opponent.setvieDuHero(
-          opponent.getvieDuHero() - this.getpuissanceHero() * 2
-        );
+
       }
     } else {
       super.attack(opponent);
@@ -124,9 +120,7 @@ class HeroSpear extends Hero {
             this.weapon.damage
         );
       } else {
-        opponent.setvieDuHero(
-          opponent.getvieDuHero() - this.getpuissanceHero() * 2
-        );
+      
       }
     } else {
       super.attack(opponent);
@@ -145,10 +139,12 @@ const spear = new Weapon("Spear", 8);
 const Hero3 = new HeroSpear("Bill", 250, 25, spear);
 
 function Baston(Combattant1: Hero, Combattant2: Hero): void {
-  let phase = 0;
+  let i = 0;
   while (Combattant1.isAlive() && Combattant2.isAlive()) {
+    console.log("round" , i);
     Combattant1.attack(Combattant2);
     Combattant2.attack(Combattant1);
+    i++;
     console.log(Combattant1.getvieDuHero(), Combattant2.getvieDuHero());
     if (!Combattant1.isAlive() && !Combattant2.isAlive()) {
       console.log(`Vous avez Perdu bande de nazes !`);
@@ -157,8 +153,8 @@ function Baston(Combattant1: Hero, Combattant2: Hero): void {
     } else if (!Combattant2.isAlive()) {
       console.log(`${Combattant1.getnomDuHero()} à remporté la victoire !`);
     }
-    phase++;
-    console.log(`round : ${phase}`);
+    
   }
 }
-Baston(Hero1, Hero3);
+Baston(Hero3, Hero1);
+

@@ -5,7 +5,7 @@ Tu vas devoir trouver les informations suivantes et les tester au fur et à mesu
 ## Level 1
 
 - Quels sont les différents type primitives de données en TypeScript ?
-  "Les primitives: string , number , et boolean"
+  "Les primitives: string , number , et boolean, null, undefined"
   Le JavaScript possède trois primitives très communes : string , number , et boolean . Chacune d'entre elles a un type correspondant en TypeScript."
 - Comment typer un tableau ?
   avec la primitives + []
