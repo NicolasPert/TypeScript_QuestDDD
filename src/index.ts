@@ -156,5 +156,4 @@ function Baston(Combattant1: Hero, Combattant2: Hero): void {
     
   }
 }
-Baston(Hero3, Hero1);
-
+Baston(Hero3, Hero1);    
